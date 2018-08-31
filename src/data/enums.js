@@ -21,7 +21,14 @@ const GAMES = {
   SmashUltimate: "Super Smash Bros Ultimate",
   KingdomHearts: "Kingdom Hearts 3",
   LastOfUs: "The Last of Us 2",
-  ResidentEvil: "Resident Evil 2 Remake"
+  ResidentEvil: "Resident Evil 2 Remake",
+  PokemonLetsGo: "Pokemon Let's Go P/E",
+  ElderScrolls: "Elder Scrolls VI",
+  Control: "Control",
+  Anthem: "Anthem",
+  Dmc: "Devil May Cry V",
+  Sekiro: "Sekiro: Shadows Die Twice",
+  RedDead: "Red Dead Redemption 2"
 };
 
 module.exports = {
