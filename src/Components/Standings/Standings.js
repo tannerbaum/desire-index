@@ -5,14 +5,17 @@ import PositionChange from "../PositionChange/PositionChange";
 
 const StandingsTable = styled.div`
 	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height: 70vh;
 `;
 
 const GameEntry = styled.div`
-	width: 80%;
-	height: 20px;
+	/* width: 90%; */
+	/* height: 20px; */
 	border: 1px solid lightgray;
-	padding: 10px 5px;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	text-align: left;
 	display: flex;
 	flex-direction: row;
@@ -20,6 +23,10 @@ const GameEntry = styled.div`
 
 	div {
 		display: inline-block;
+	}
+
+	div.gameTitle {
+		padding: 10px 5px;
 	}
 `;
 

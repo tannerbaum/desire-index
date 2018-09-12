@@ -1,8 +1,37 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
 import logo from "./logo.svg";
 import "./App.css";
 import Standings from "./Components/Standings/Standings";
+import EpisodeDetails from "./Components/EpisodeDetails/EpisodeDetails";
 import { timeLine } from "./data/indexTimeLine";
+
+const LeftColumn = styled.div`
+	/* width: 15%;
+	display: inline-block; */
+	display: none;
+`;
+
+const MainColumn = styled.div`
+	/* width: 65%; */
+	width: 75%;
+	display: inline-block;
+`;
+
+const RightColumn = styled.div`
+	/* width: 20%; */
+	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+
+	> div {
+		width: 80%;
+		margin: 0 auto;
+	}
+`;
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -40,17 +69,29 @@ class App extends Component {
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title">Welcome to React</h1>
 				</header>
-				<Standings
-					gamesThisWeek={timeLine[this.state.thisWeek].games}
-					gamesLastWeek={
-						this.state.lastWeek >= 0
-							? timeLine[this.state.lastWeek].games
-							: null
-					}
-				/>
-				<button onClick={this.goWeekForward}>Week Before</button>
-				<button onClick={this.goWeekBackward}>Week After</button>
-				<p>{this.state.week}</p>
+				<LeftColumn>{/* App info */}</LeftColumn>
+				<MainColumn>
+					<Standings
+						gamesThisWeek={timeLine[this.state.thisWeek].games}
+						gamesLastWeek={
+							this.state.lastWeek >= 0
+								? timeLine[this.state.lastWeek].games
+								: null
+						}
+					/>
+				</MainColumn>
+				<RightColumn>
+					{/* episode info */}
+					<div>
+						<EpisodeDetails
+							episode={timeLine[this.state.thisWeek]}
+						/>
+						<div className="buttons">
+							<button onClick={this.goWeekForward}>Prior</button>
+							<button onClick={this.goWeekBackward}>Next</button>
+						</div>
+					</div>
+				</RightColumn>
 			</div>
 		);
 	}
