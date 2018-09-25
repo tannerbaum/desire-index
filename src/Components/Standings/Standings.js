@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import PositionChange from "../PositionChange/PositionChange";
 
 const StandingsTable = styled.div`
-	margin-top: 20px;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	height: 70vh;
+	height: 100%;
+	padding: 0 30px;
 `;
 
 const GameEntry = styled.div`
@@ -21,12 +21,19 @@ const GameEntry = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 
+	--entry-font-size: 14px;
+	font-size: var(--entry-font-size);
+
 	div {
 		display: inline-block;
 	}
 
 	div.gameTitle {
 		padding: 10px 5px;
+		> div:first-child {
+			font-weight: 700;
+			padding-right: 15px;
+		}
 	}
 `;
 
@@ -51,8 +58,11 @@ class Standings extends React.Component {
 			<StandingsTable>
 				{this.props.gamesThisWeek.map((game, index) => {
 					return (
-						<GameEntry>
-							<div className="gameTitle">{game}</div>
+						<GameEntry key={game}>
+							<div className="gameTitle">
+								<div>{index + 1}</div>
+								<div>{game}</div>
+							</div>
 							<PositionChange value={positionchanges[index]} />
 						</GameEntry>
 					);

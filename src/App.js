@@ -1,41 +1,46 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import "./App.css";
 import Standings from "./Components/Standings/Standings";
 import EpisodeDetails from "./Components/EpisodeDetails/EpisodeDetails";
 import { timeLine } from "./data/indexTimeLine";
 
-const LeftColumn = styled.div`
-	/* width: 15%;
-	display: inline-block; */
-	display: none;
-`;
+// const LeftColumn = styled.div`
+// 	/* width: 15%;
+// 	display: inline-block; */
+// 	display: none;
+// `;
 
-const MainColumn = styled.div`
-	/* width: 65%; */
-	width: 75%;
-	display: inline-block;
-`;
+// const MainColumn = styled.div`
+// 	/* width: 65%; */
+// 	width: 75%;
+// 	display: inline-block;
+// `;
 
-const RightColumn = styled.div`
-	/* width: 20%; */
-	width: 25%;
-	display: inline-block;
-	vertical-align: top;
-	text-align: left;
+// const RightColumn = styled.div`
+// 	/* width: 20%; */
+// 	width: 25%;
+// 	display: inline-block;
+// 	vertical-align: top;
+// 	text-align: left;
 
-	> div {
-		width: 80%;
-		margin: 0 auto;
-	}
-`;
+// 	> div {
+// 		width: 80%;
+// 		margin: 0 auto;
+// 	}
+// `;
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { thisWeek: 0, lastWeek: -1 };
+		this.state = {
+			thisWeek: 0,
+			lastWeek: -1,
+			atBeginning: true,
+			atEnd: false
+		};
 
 		this.goWeekForward = this.goWeekForward.bind(this);
 		this.goWeekBackward = this.goWeekBackward.bind(this);
@@ -48,7 +53,8 @@ class App extends Component {
 		this.setState(prevState => {
 			return {
 				thisWeek: prevState.thisWeek - 1,
-				lastWeek: prevState.lastWeek - 1
+				lastWeek: prevState.lastWeek - 1,
+				atBeginning: prevState.thisWeek - 1 === 0 ? true : false
 			};
 		});
 	}
@@ -57,7 +63,8 @@ class App extends Component {
 		this.setState(prevState => {
 			return {
 				thisWeek: prevState.thisWeek + 1,
-				lastWeek: prevState.lastWeek + 1
+				lastWeek: prevState.lastWeek + 1,
+				atEnd: prevState.thisWeek + 1 === timeLine.length ? true : false
 			};
 		});
 	}
@@ -67,10 +74,9 @@ class App extends Component {
 			<div className="App">
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
+					<h1 className="App-title">Desire Index (RIP)</h1>
 				</header>
-				<LeftColumn>{/* App info */}</LeftColumn>
-				<MainColumn>
+				<section>
 					<Standings
 						gamesThisWeek={timeLine[this.state.thisWeek].games}
 						gamesLastWeek={
@@ -79,19 +85,24 @@ class App extends Component {
 								: null
 						}
 					/>
-				</MainColumn>
-				<RightColumn>
-					{/* episode info */}
-					<div>
-						<EpisodeDetails
-							episode={timeLine[this.state.thisWeek]}
-						/>
-						<div className="buttons">
-							<button onClick={this.goWeekForward}>Prior</button>
-							<button onClick={this.goWeekBackward}>Next</button>
-						</div>
+				</section>
+				<div className="episode">
+					<EpisodeDetails episode={timeLine[this.state.thisWeek]} />
+					<div className="buttons">
+						<button
+							onClick={this.goWeekForward}
+							disabled={this.state.atBeginning}
+						>
+							Prior
+						</button>
+						<button
+							onClick={this.goWeekBackward}
+							disabled={this.state.atEnd}
+						>
+							Next
+						</button>
 					</div>
-				</RightColumn>
+				</div>
 			</div>
 		);
 	}

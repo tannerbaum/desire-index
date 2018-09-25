@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const PositionCell = styled.div`
 	border-left: 1px dotted #d3d3d3;
@@ -49,7 +48,7 @@ class PositionChange extends React.Component {
 		let positionMarkup;
 
 		if (this.props.value === null) {
-			positionMarkup = <div className="new"> 🆕 </div>;
+			positionMarkup = <div className="new"> ** </div>;
 		} else if (this.props.value > 0) {
 			positionMarkup = (
 				<div className="rose">
