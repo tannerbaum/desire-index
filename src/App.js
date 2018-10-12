@@ -23,24 +23,28 @@ class App extends Component {
 
     goWeekBackward() {
         this.setState(prevState => {
+            const thisWeek = prevState.thisWeek - 1;
+            const lastWeek = prevState.lastWeek - 1;
+
             return {
-                thisWeek: prevState.thisWeek - 1,
-                lastWeek: prevState.lastWeek - 1,
-                atBeginning: prevState.thisWeek - 1 === 0 ? true : false,
-                atEnd: prevState.thisWeek + 2 === timeLine.length ? true : false
+                thisWeek,
+                lastWeek,
+                atBeginning: thisWeek === 0 ? true : false,
+                atEnd: thisWeek + 1 === timeLine.length ? true : false
             };
         });
     }
 
     goWeekForward() {
         this.setState(prevState => {
-            console.log(prevState.thisWeek);
-            console.log(timeLine.length);
+            const thisWeek = prevState.thisWeek + 1;
+            const lastWeek = prevState.lastWeek + 1;
+
             return {
-                thisWeek: prevState.thisWeek + 1,
-                lastWeek: prevState.lastWeek + 1,
-                atBeginning: prevState.thisWeek - 1 === 0 ? true : false,
-                atEnd: prevState.thisWeek + 2 === timeLine.length ? true : false
+                thisWeek,
+                lastWeek,
+                atBeginning: thisWeek === 0 ? true : false,
+                atEnd: thisWeek + 1 === timeLine.length ? true : false
             };
         });
     }
