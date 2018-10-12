@@ -1,3 +1,5 @@
+![screenshot](https://github.com/THoisington/desire-index/blob/master/screenshot.png)
+
 Disclaimer: This is in no way officially a product of Easy Allies nor was made in cooperation with them. If the Allies don't like me using their logos I can take them down. 
 
 Please do not look too closely at this code. It was mostly an experiment for me with CSS grid and flexbox, and I know that the CSS in particular is kind of messy. 
