@@ -56,7 +56,7 @@ class App extends Component {
                             onClick={this.goWeekBackward}
                             disabled={this.state.atBeginning}
                         >
-                            Prior
+                            Prev
                         </button>
                         <button
                             onClick={this.goWeekForward}
@@ -83,7 +83,7 @@ class App extends Component {
                             onClick={this.goWeekBackward}
                             disabled={this.state.atBeginning}
                         >
-                            Prior
+                            Prev
                         </button>
                         <button
                             onClick={this.goWeekForward}

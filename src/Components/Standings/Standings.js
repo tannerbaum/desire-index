@@ -21,8 +21,11 @@ const GameEntry = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-    --entry-font-size: 14px;
-    font-size: var(--entry-font-size);
+    font-size: 0.875rem;
+
+    @media (min-width: 700px) {
+        font-size: 1.125rem;
+    }
 
     div {
         display: inline-block;
